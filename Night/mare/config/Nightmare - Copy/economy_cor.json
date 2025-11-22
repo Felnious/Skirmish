@@ -1,0 +1,31 @@
+// Mono-space font required
+{
+"economy": {
+	"energy": {
+		"land": {
+			"corwin": [200, 300],
+			"corsolar": [80, 120],
+			"coradvsol": [80, 120],
+			"corfus": [30, 40],
+			"corafus": [200, 300]
+		},
+		"water": {
+
+			"cortide": [140, 250],
+			"coruwfus": [100, 200]
+		}
+	},
+	"geo": {
+		"cortex": "corgeo"
+	},
+	"mex": {
+		"cortex": "cormex"
+	},
+	"assist": {
+		"cortex": "cornanotc"
+	},
+	"default": {
+		"cortex": "corwin"
+	}
+}
+}

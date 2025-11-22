@@ -1,0 +1,1122 @@
+    // Mono-space font required
+{
+"quota": {
+	"scout": 1,  // max scouts out of units with attribute "scout"
+	"raid": [9.0, 420.0],  // [<min>, <avg>] power of raider squad
+	"attack": 60.0,  // min power of attack group
+	"thr_mod": {
+		"attack": [1.0, 1.0],  // [<min>, <max>] enemy threat modifier for target selection of attack task
+		"defence": [1.0, 1.0],  // [<min>, <max>] enemy threat modifier for group size calculation of defence task
+		"mobile": 1.05,  // initial modifier for power of attack group based on mobile enemy threat
+		"static": 1.2,  // initial modifier for power of attack group based on static enemy threat
+		"comm": 0.01
+	},
+	// anti-air threat threshold, air factories will stop production when AA threat exceeds
+	"aa_threat": [[8, 25.0], [24, 250.0]],  // [[<map_start>, <threat_start>], [<map_end>, <threat_end>]]
+	"slack_mod": {
+		"all": 0.5,  // threat map 64-elmos slack multiplier for all units
+		"static": 0.5,  // additional 64-elmo-cells for static units
+		"speed": [0.75, 4.0]  // [<64elmo_cells_speed_mod>, <max_64elmo_cells>]
+	},
+	"num_batch": 5,  // quantity of mobile units in build-batch
+	"anti_cap": 2.0  // probability 0.0~1.0 of AntiCapture action
+},
+
+// If unit's health drops below specified percent it will retreat
+"retreat": {
+	"builder": [0.8, 0.89, 1.0],  // [<min default>, <max default>, <UnitDef modifier>] for all builders
+	"fighter": [0.5, 0.55, 1.0],  // [<min default>, <max default>, <UnitDef modifier>] for all not-builder units
+	"shield": [0.25, 0.55]  // [<empty>, <full>] shield power
+},
+
+"defence": {
+	"infl_rad": 5,  // radius in influenece cells for defendAlly map
+	"base_rad": [600.0, 1200.0],  // defend if enemy within clamp(distance(lane_pos, base_pos), 1000, 2000) radius
+	"comm_rad": [1000.0, 500.0],  // 0 distance from base ~ 1000, base_rad ~ 500.0
+	"escort": [2, 1, 600]  // [<builders_count>, <defenders_count>, <constraint_seconds>]
+},
+		// read of "escort":  [number of builders with defenders, number of defenders for each builder, timeframe were only escorted builders are able to expand (=build mex, porc)]
+		// base radius: ai checks if is withing base_rad. if there is enemy it checks if it is withing comm radius which is variable and depend on distance from base
+		// if there is, then ai checks speed, direction and threat on enemys position. if all conditions positive => com attacks
+	
+		//------- THREAT MODIFIERS ---------
+		// "threat"  : how ai sees enemy units
+		// "power" : how ai sees own units
+		// threat categories: air, surface (= water & land), water (= underwater), default
+		// threat roles: scout, raider, skrimish, assault, heavy, anti_heavy, artillery, super
+	
+		//when are thread modifiers needed?
+		// => basically when the simple formula dps*hp does not work to calculate the thread/power of a unit:
+		// - overshooting
+		// -inability to hit a certain target due to slow/bad aiming or inability to attack at all (cause target is air or underwater etc. )
+		// -aoe
+		// -dps of paralyzer weapons or dgun
+		
+		//MODIFIER MAINLY USED BY STRUCTURES
+		// "build_mod": 1000.0,
+			// build_mod allows to de/increase the max amount of builder individually for each building type. values > 1000 => less builders; values <1000 more builders
+			// assign builders till targeted time to build reached
+			// default value specified in economy-> build_mod
+			// goal_build_time (economy.json)= build_mod / metal_income
+		// "coolddown":1, ----- Amount of seconds when unit is not available for construction after UnitFinished
+			
+	
+//########################################################################################################################
+//####|| Evolving Commanders ||###########################################################################################
+//########################################################################################################################
+
+		"behaviour": {
+			"armcom": {
+				"role": ["builder"],
+				"attribute": ["commander", "dg_cost"],
+				"build_speed": 5.0,
+				"retreat": 0.6,
+				"threat": 1.0
+			},
+//########################################################################################################################
+			"armcomlvl2": {
+				"role": ["builder"],
+				"attribute": ["commander", "dg_cost"],
+				"build_speed": 5.0,
+				"retreat": 0.6,
+				"threat": 1.0
+			},
+//########################################################################################################################
+			"armcomlvl3": {
+				"role": ["builder"],
+				"attribute": ["commander", "dg_cost"],
+				"build_speed": 5.0,
+				"retreat": 0.6,
+				"threat": 1.0
+			},
+//########################################################################################################################
+			"armcomlvl4": {
+				"role": ["builder"],
+				"attribute": ["commander", "dg_cost"],
+				"build_speed": 5.0,
+				"retreat": 0.6,
+				"threat": 1.0
+			},
+//########################################################################################################################
+			"armcomlvl5": {
+				"role": ["builder"],
+				"attribute": ["commander", "dg_cost"],
+				"build_speed": 5.0,
+				"retreat": 0.6,
+				"threat": 1.0
+			},
+//########################################################################################################################
+			"armcomlvl6": {
+				"role": ["builder"],
+				"attribute": ["commander", "dg_cost"],
+				"build_speed": 5.0,
+				"retreat": 0.6,
+				"threat": 1.0
+			},
+//########################################################################################################################
+			"armcomlvl7": {
+				"role": ["builder"],
+				"attribute": ["commander", "dg_cost"],
+				"build_speed": 5.0,
+				"retreat": 0.6,
+				"threat": 1.0
+			},
+//########################################################################################################################
+			"armcomlvl8": {
+				"role": ["builder"],
+				"attribute": ["commander", "dg_cost"],
+				"build_speed": 5.0,
+				"retreat": 0.6,
+				"threat": 1.0
+			},
+//########################################################################################################################
+			"armcomlvl9": {
+				"role": ["builder"],
+				"attribute": ["commander", "dg_cost"],
+				"build_speed": 5.0,
+				"retreat": 0.6,
+				"threat": 1.0
+			},
+//########################################################################################################################
+			"armcomlvl10": {
+				"role": ["builder"],
+				"attribute": ["commander", "dg_cost"],
+				"build_speed": 5.0,
+				"retreat": 0.6,
+				"threat": 1.0
+			},
+			
+//########################################################################################################################
+//####|| Armada Land Factories ||#########################################################################################
+//########################################################################################################################
+
+			"armlab": {
+				"role": ["static"],
+				"attribute": ["support"],
+				"limit": 1,
+				"build_speed": 5.0
+			},
+			"armalab": {
+				"role": ["static"],
+				"attribute": ["support"],
+				"limit": 1,
+				"build_speed": 10.0
+			},
+			"armvp": {
+				"role": ["static"],
+				"attribute": ["support"],
+				"limit": 1,
+				"build_speed": 5.0
+			},
+			"armavp": {
+				"role": ["static"],
+				"attribute": ["support"],
+				"limit": 1,
+				"build_speed": 10.0
+			},
+			"armhp": {
+				"role": ["static"],
+				"attribute": ["support"],
+				"limit": 1,
+				"build_speed": 5.0
+			},
+			
+//########################################################################################################################
+//####|| Armada Sea Factories ||##########################################################################################
+//########################################################################################################################
+
+			"armfhp": {
+				"role": ["static"],
+				"attribute": ["support"],
+				"limit": 1,
+				"build_speed": 5.0
+			},
+			"armsy": {
+				"role": ["static"],
+				"attribute": ["support"],
+				"limit": 1,
+				"build_speed": 5.0
+			},
+			"armasy": {
+				"role": ["static"],
+				"attribute": ["support"],
+				"limit": 1,
+				"build_speed": 10.0
+			},
+			"armamsub": {
+				"role": ["static"],
+				"attribute": ["support"],
+				"limit": 1,
+				"build_speed": 5.0
+			},
+
+//########################################################################################################################
+//####|| Armada Air Factories ||##########################################################################################
+//########################################################################################################################
+
+			"armap": {
+				"role": ["static"],
+				"attribute": ["support"],
+				"limit": 1,
+				"build_speed": 5.0
+			},
+			"armaap": {
+				"role": ["static"],
+				"attribute": ["support"],
+				"limit": 1,
+				"build_speed": 10.0
+			},
+			"armplat": {
+				"role": ["static"],
+				"attribute": ["support"],
+				"limit": 1,
+				"build_speed": 5.0
+			},
+
+//########################################################################################################################
+//####|| Armada T3 Factories ||###########################################################################################
+//########################################################################################################################
+			
+			"armshltx": {
+				"role": ["static"],
+				"attribute": ["support"],
+				"limit": 1,
+				"build_speed": 10.0,
+				"midposoffset": [0, 0, -16]
+			},
+			"armshltxuw": {
+				"role": ["static"],
+				"attribute": ["support"],
+				"limit": 1,
+				"build_speed": 10.0,
+				"midposoffset": [0, 0, -16]
+			},
+	
+//########################################################################################################################
+//####|| Support Nano Construction Turrets // Assist Drones ||############################################################
+//########################################################################################################################
+	
+	// Nano - Armada
+			"armnanotc": {
+				"role": ["support"],
+				"build_speed": 8.0
+			},
+			"armnanotct2": {
+				"role": ["support"],
+				"build_speed": 10.0
+			},
+			"armnanotcplat": {
+				"role": ["support"],
+				"build_speed": 8.0
+			},
+			"armrespawn": {
+				"role": ["support"],
+				"build_speed": 10.0
+			},
+	//Assist Drones
+			"armassistdrone": {
+				"role": ["support"],
+				"build_speed": 5.0
+			},
+	
+//########################################################################################################################
+//####|| Static Defense -- Armada  ||#####################################################################################
+//########################################################################################################################
+
+	//T1 Defenses -- Armada
+			"armrad": {
+				"role": ["static"],
+				"since": 120
+			},
+			"armjamt":{
+				"role":["static"],
+				"since": 120
+			},
+			"armjuno": {
+            	"role":["super", "static", "artillery"]
+       		},
+			"armclaw": {
+				"role": ["static"]
+			},
+			"armllt": {
+				"role": ["static"]
+			},
+			"armbeamer": {
+				"role": ["static"]
+			},
+			"armhlt": {
+				"role": ["static"]
+			},
+			"armguard": {
+				"role": ["static"],
+				"attribute": ["artillery"],
+				"on": false,
+				"threat": 0.3
+			},
+			"armrl": {
+				"role": ["anti_air"]
+			},
+			"armferret": {
+				"role": ["anti_air"]
+			},
+			"armcir": {
+				"role": ["anti_air"]
+			},
+			"armdl": {
+				"role": ["static"]
+			},
+	//T2 Defenses -- Armada
+			"armarad": {
+				"role": ["static"]
+			},
+			"armveil":{
+				"role": ["static"]
+			},
+			"armsd": {
+				"role": ["static"]
+			},
+			"armtarg": {
+				"role": ["static"]
+			},
+			"armgate": {
+				"role": ["static"]
+			},
+			//"armgatet3": {
+			//	"role": ["static"]
+			//},
+			"armpb": {
+				"role": ["static"]
+			},
+			"armamb": {
+				"role": ["static"],
+				"attribute": ["artillery"],
+				"on": false
+			},
+			"armanni": {
+				"role": ["static"],
+				"attribute": ["heavy", "anti_heavy"]
+			},
+			"armbrtha": {
+				"role": ["static"]
+			},
+			"armminivulc": {
+				"role": ["super"]
+			},
+			"armvulc": {
+				"role": ["super"]
+			},
+			"armflak": {
+				"role": ["anti_air"]
+			},
+			"armmercury": {
+				"role": ["anti_air"]
+			},
+			"armemp":{
+				"role":	["super"]
+			},
+			"armamd":{
+				"role":	["super"]
+			},
+			"armsilo":{
+				"role":	["super"]
+			},
+	// T1 Sea Defenses -- Armada
+			"armfrad": {
+				"role": ["static"]
+			},
+			"armfhlt": {
+				"role": ["static"]
+			},
+			"armfrt": {
+				"role": ["anti_air"]
+			},
+			"armtl": {
+				"role": ["static"]
+			},
+	// T2 Sea Defenses -- Armada
+			"armason": {
+				"role": ["static"]
+			},
+			"armfatf": {
+				"role": ["static"]
+			},
+			"armkraken": {
+				"role": ["static"]
+			},
+			"armfflak": {
+				"role": ["anti_air"]
+			},
+			"armatl": {
+				"role": ["static"]
+			},
+
+//########################################################################################################################
+//####|| Static Economy -- Armada  ||#####################################################################################
+//########################################################################################################################
+	
+			//Land T1 Economy
+			"armmex" : {
+				"role": ["static"]
+			},
+			"armmakr" : {
+				"role": ["static"]
+			},
+			"armmstor" : {
+				"role": ["static"],
+				"since": 300,
+				"limit": 1
+			},
+			"armwin": {
+				"role": ["static"]
+			},
+			"armsolar" : {
+				"role": ["static"]
+			},
+			"armadvsol" : {
+				"role": ["static"]
+			},
+			"armgeo": {
+				"role": ["static"],
+				"midposoffset": [0, 0, -2]
+			},
+			"armestor" : {
+				"role": ["static"],
+				"since": 300,
+				"limit": 1
+			},
+			//Land T2 Economy
+			"armmoho" : {
+				"role": ["static"]
+			},
+			"armmmkr" : {
+				"role": ["static"]
+			},
+			"armshockwave" : {
+				"role": ["static"]
+			},
+			"armuwadvms" : {
+				"role": ["static"],
+				"since": 600
+			},
+			"armgmm" : {
+				"role": ["static"]
+			},
+			"armageo" : {
+				"role": ["static"]
+			},
+			"armfus" : {
+				"role": ["static"],
+				"cooldown": 3
+			},
+			"armckfus" : {
+				"role": ["static"]
+			},
+			"armafus" : {
+				"role": ["static"]
+			},
+			"armuwfus" : {
+				"role": ["static"]
+			},	
+	
+	// Walls (Neutral BARbAI Refuse to Shoot (Only T2+T3 can break through Running over)) -- Needs a Revamp or a Rework to make non neutral
+			"armdrag": {
+				"role": ["static"]
+			},
+			"armfort": {
+				"role": ["static"]
+			},
+	
+	// ============================================   M O B I L E    U N I T S   =======================================0
+	
+			// Mobile Unit Behaviour Modifiers
+				// "role": [<main>, <enemy>, <enemy>, ...]
+				// <main> is the role to make desicions of when to build it and what task to assign
+				// <enemy> is to decide how to counter enemy unit, if missing then equals to <main>
+	
+				// Roles: builder, scout, raider, riot, assault, skirmish, artillery, anti_air, anti_sub, anti_heavy, bomber, support, mine, transport, air, sub, static, heavy, super, commander
+				// Auto-assigned roles: builder, air, static, super, commander
+				// raider: units grouped apart from others, tries to find weak spots.
+				// riot: regular attacker, but according to response.json it is built when enemy has many raiders (1st riot is cons guardian/defender for the first 5 min)(in plans to make riot just con's defender).
+				// assault: regular attacker, according to response.json it is built when enemy has many statics.
+				// skirmish: regular attacker, according to response.json it is built when enemy has many riots or assaults. skirmish = main combat unit
+				// Bomber:	avoid AA, attack everything where group can have no more than some percent of loss (aa threat * 0.25 < bomber power). 
+					// Bombers return to airpad for repairs, cons doesn't try to repair air units
+				
+				// Attributes - optional states
+				// units with a role inside attribute gets counted by the owning ai as such
+				// "melee" - always move close to target, disregard attack range
+				// "boost" - boost speed on retreat
+				// "no_jump" - disable jump on retreat
+				// "no_strafe" - disable gunship's strafe
+				// "stockpile" - load weapon before any task, auto-assigned
+				// "siege" - mostly use fight command instead of move -  moves into range of the first enemy in its path, then fires while standing still until that enemy is destroyed. rocko with fight command is able to kill a group of llt and staying outside of range
+				// "support" - joins attack group (skirmish, assault, riot) and follow leader of that group with fight-move or guard command if melee attribute added. for factories "support" means to build factory in base radius and not on front
+				// "ret_hold" - hold fire on retreat
+				// "ret_fight" - fight on retreat | units dont retreat to repair with that attribute => bugged
+				// "solo" - unit with "solo attribute" cannot work together on a task with other units with the same attribute
+				// "dg_cost" - DGun by metal cost instead of by threat
+				// "jump" - enable jump on regular move
+				// "onoff" - auto-assigned when "on" tag is present
+				// "vampire" - reclaim enemy units without threat check
+				// "rare" - build unit from T1 factory even when T2+ factory is available
+				// "rearm" - use CMD_FIND_PAD when weapon is not ready
+				// "no_dgun" - do not use DGun
+				// "anti_stat" - only static targets
+				//"attribute": ["boost", "no_strafe"],
+	
+			// Fire state (open by default)
+				// "hold" - hold fire
+				// "return" - return fire
+				// "open" - fire at will
+				// syntax::: "fire_state": "open",
+	
+				//"on"/"off": true/false - syntax:: "on":false | use to modifiy trajectory mode for weapons
+	
+	
+			
+			//OTHER MODIFIERS
+				//		"reload": 1.0,  Overrides reloadTime in seconds
+				// 		"limit"	Limits number of units			
+				//		"since": 60, 	 	Unit can be built only since specific time in seconds
+				//		"retreat": 0.8, 	Minimum hp percent before retreat	
+				//		"pwr_mod": 1.0,		Ally threat multiplier	
+				//		"thr_mod": 1.0,		Enemy threat multiplier
+				//		"ignore": false,	Ignore enemy
+				//      "slow_target": true/false , activated the weapons switch - true to fire fast weapon on fast target (for fido)
+				// FIXME: Temporary tag to override buildSpeed
+	
+	
+			//Mobile Builders 	
+			"armck": {
+				"role": ["builder"],
+				"limit": 20,
+				"build_speed": 5.0  //bp 80
+			},
+			"armack": {
+				"role": ["builderT2"],
+				"attribute": ["solo"],
+				"limit": 10,
+				"build_speed": 10.0  //bp 180
+			},
+			"armdecom": {
+				"role": ["builder"],
+				"limit": 2,
+				"build_speed": 10.0,
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armfark": {
+				"role": ["builder"],
+				"build_speed": 10.0,  //bp 140
+				"limit": 20
+			},
+
+			"armcv": {
+				"role": ["builder"],
+				"limit": 10,
+				"build_speed": 7.0  //bp 90
+			},
+			"armbeaver": {
+				"role": ["builder"],
+				"limit": 10,
+				"build_speed": 8.0  //bp 80
+			},
+			"armmlv": {
+				"role": ["support"],
+				"limit": 0
+			},
+			"armacv": {
+				"role": ["builderT2"],
+				"attribute": ["solo"],
+				"limit": 10,
+				"build_speed": 10.0  //bp 250
+			},
+
+			"armconsul": {
+				"role": ["builder"],
+				//"attribute": ["support"],
+				"build_speed": 10.0 ,  //bp 150 	
+				"limit": 2
+			},
+
+			"armca": {
+				"role": ["builder", "air"],
+				"retreat": 0.6,
+				"limit": 25,
+				"build_speed": 5.0  //bp 60
+			},
+			"armaca": {
+				"role": ["builder", "air"],
+				"attribute": ["solo"],
+				"retreat": 0.6,
+				"limit": 2,
+				"build_speed": 10.0  //bp 100
+			},
+
+			"armcs": {
+				"role": ["builder"],
+				"retreat": 0.6,
+				"limit": 6,
+				"build_speed": 7  //bp 125
+			},
+
+			"armacsub": {
+				"role": ["builderT2", "sub"],
+				"attribute": ["solo"],
+				"retreat": 0.3,
+				"limit": 10,
+				"build_speed": 10.0 //bp 300
+			},
+
+			"armmls": {
+				"role": ["builder"],
+				"retreat": 0.5,
+				"limit": 2,
+				"build_speed": 10.0  //bp 200
+			},
+
+			"armch": {
+				"role": ["builder"],
+				"limit": 10,
+				"build_speed": 8.0  //bp 110
+			},
+	
+			// ARM BOTLAB
+	
+			"armrectr": {
+				"role": ["support"],
+				"attribute": ["rare"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armflea": {
+				"role": ["scout"],
+				"threat": {"air": 0.0, "surf": 0.0, "water": 0.0, "commander": 10.0, "vs": {"air": 0.0, "surf": 0.0, "water": 0.0, "commander": 10.0}},
+				"ignore": true
+			},
+			"armpw": {
+				"role": ["raider"],
+				"ignore": true
+			},
+			"armrock": {
+				"role": ["skirmish"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armham": {
+				"role": ["assault"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armwar": {
+				"role": ["riot"],
+				"attribute": ["skirmish"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armjeth": {
+				"role": ["anti_air"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+	
+			// adv bot - armalab
+	
+			"armspy": {
+				"role": ["scout"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armmark": {
+				"role": ["assault"],
+				"attribute": ["support"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armaser": {
+				"role": ["support"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armspid": {
+				"role": ["support"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armfast": {
+				"role": ["raider"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armzeus": {
+				"role": ["assault"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armmav": {
+				"role": ["riot"],
+				"attribute": ["skirmish"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armfido": {
+				"role": ["skirmish"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armsptk": {
+				"role": ["raider"],
+				"attribute": ["siege"],
+				"threat": 0.0,
+				"power": 5.0		
+			},
+			"armfboy": {
+				"role": ["heavy", "assault"],
+				"threat": 0.0,
+				"power": 5.0,
+				"retreat": 0.0
+			},
+			"armsnipe": {
+				"role": ["anti_heavy", "static"],
+				"attribute": ["siege"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armvader": {
+				"role": ["raider"],
+				"attribute": ["melee"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armamph": {
+				"role": ["raider", "anti_air"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armaak": {
+				"role": ["anti_air"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armscab": {
+				"role": ["support"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			
+			// T3 bot - armshltx
+	
+			"armmar": { //rauder
+				"role": ["raider", "heavy"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armraz": { //razorback
+				"role": ["riot", "heavy"],
+				"attribute": ["melee"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armvang": { //vanguard
+				"role": ["artillery", "heavy"],
+				//"attribute": ["siege"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armthor":{ //thor
+				"role":["super"],
+				"attribute": ["melee"],
+				"threat": 0.0,
+				"power": 99.0,
+				"retreat": 0.0
+			},
+			"armbanth": { //Titan
+				"role": ["assault", "heavy"],
+				"attribute": ["melee"],
+				"threat": 0.0,
+				"power": 99.0,
+				"retreat": 0.0
+			},
+			"armlun": { //hovertank
+				"role": ["skirmish", "heavy"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			//EXPERIMENTAL T3
+			"armmeatball": { //meatball
+				"role": ["raider"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			//"armassimilator": { //assimilator
+			//	"role": ["raider"],
+			//	"threat": 0.0,
+			//	"power": 5.0
+			//},
+			"armpwt4": { //epic pawn
+				"role": ["raider"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armsptkt4": { //epic recluse
+				"role": ["raider"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armvadert4": { //tumbleweed
+				"role": ["raider"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armrattet4": { //ratte
+				"role": ["raider"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			//"armdronecarryland": { //dronecarrier
+			//	"role": ["raider"],
+			//	"threat": 0.0,
+			//	"power": 5.0
+			//},
+
+	
+			// vehicles - armvp
+	
+			"armfav": {
+				"role": ["scout"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armflash": {
+				"role": ["raider"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armpincer": {
+				"role": ["assault"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armstump": {
+				"role": ["assault"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armart": {
+				"role": ["artillery"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armjanus": {
+				"role": ["skirmish"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armsam": {
+				"role": ["anti_air"],
+				"attribute": ["skirmish"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+	
+			// adv vehicles - armavp
+	
+			"armlatnk": {
+				"role": ["raider"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armgremlin": {
+				"role": ["scout"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armbull": {
+				"role": ["assault"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armmanni": {
+				"role": ["anti_heavy"],
+				"attribute": ["artillery"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armmart": {
+				"role": ["artillery"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armmerl": {
+				"role": ["artillery"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armyork": {
+				"role": ["anti_air"],
+				"attribute": ["support"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armseer": {
+				"role": ["assault"],
+				"attribute": ["support"],
+				"limit": 1,
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armjam": {
+				"role": ["support"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+
+			// aircraft - armap
+	
+			"armpeep": {
+				"role": ["scout", "air"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armfig": {
+				"role": ["anti_air", "air"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armthund": {
+				"role": ["bomber", "static", "assault", "anti_air"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armkam": {
+				"role": ["raider", "air"],
+				"attribute": ["siege"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+
+			// adv aircraft - armaap
+	
+			"armawac": {
+				"role": ["scout", "air"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armhawk": {
+				"role": ["anti_air", "air"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armpnix": {
+				"role": ["bomber", "air"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armbrawl": {
+				"role": ["raider", "air"],
+				"attribute": ["siege"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armblade": {
+				"role": ["heavy", "air"],
+				"attribute": ["support"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armstil": {
+				"role": ["bomber", "air"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armliche": {
+				"role": ["bomber", "air"],
+				"attribute": ["heavy"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+
+			// Naval Aircrafts
+
+			"armsaber": {
+				"role": ["skirmish", "air"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+
+			// ships - armsy
+	
+			"armrecl": {
+				"role": ["support"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armpt": {
+				"role": ["scout", "anti_air"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armdecade": {
+				"role": ["raider"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armpship": {
+				"role": ["riot"],
+				"attribute": ["siege"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armsub": {
+				"role": ["sub"],
+				"attribute": ["siege"],
+				"threat": 0.0,
+				"power": 5.0
+				
+			},
+			"armroy": {
+				"role": ["anti_sub"],
+				"attribute": ["siege"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+
+			// adv shipyard - armasy
+	
+			"armsubk": {
+				"role": ["anti_sub", "sub"]	,
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armserp": {
+				"role":["sub"],
+				"attribute": ["siege"],
+				"threat": 0.0,
+				"power": 5.0
+			},	
+			"armaas": {
+				"role": ["anti_air"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armcrus": {
+				"role": ["skirmish"],
+				"attribute": ["anti_sub"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armsjam": {
+				"role": ["support"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armcarry": {
+				"role": ["support"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armmship": {
+				"role": ["artillery"],
+				"attribute": ["siege"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armbats": {
+				"role": ["heavy"],
+				"attribute": ["siege"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armepoch": {
+				"role": ["artillery"],
+				"attribute": ["super"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+
+			// ARMADA HOVERS
+	
+			"armsh": {
+				"role": ["raider"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armanac": {
+				"role": ["assault"],
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armmh": {
+				"role": ["artillery"],
+				"limit": 6,
+				"threat": 0.0,
+				"power": 5.0
+			},
+			"armah": {
+				"role": ["anti_air"],
+				"attribute": ["skirmish"],
+				"threat": 0.0,
+				"power": 5.0
+			}
+		}
+}

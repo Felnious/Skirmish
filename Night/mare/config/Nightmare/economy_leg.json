@@ -1,0 +1,31 @@
+// Mono-space font required
+{
+"economy": {
+	"energy": {
+		"land": {
+			"legwin": [200, 300],
+			"legsolar": [80, 120],
+			"legadvsol": [80, 120],
+			"legfus": [30, 40],
+			"legafus": [200, 300]
+		},
+		"water": {
+			
+			"legtide": [140, 250],
+			"leguwfus": [100, 200]
+		}
+	},
+	"geo": {
+		"legion": "leggeo"
+	},
+	"mex": {
+		"legion": "legmex"
+	},
+	"assist": {
+		"legion": "legnanotc"
+	},
+	"default": {
+		"legion": "legwin"
+	}
+}
+}
