@@ -1,4 +1,4 @@
-Hello, I am an Independant AI Developer for Beyond All Reason. 
+Hello, I am the AI Developer (Balancer / Maintainer) for Beyond All Reason. 
 
 This Ai has been worked on for the past 780 Hours it is not finished or fully merged.
 I Am excited to Release the Prototype to the General Public for Testing Phase 2!
