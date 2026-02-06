@@ -1,6 +1,6 @@
 Hello, I am the AI Developer (Balancer / Maintainer) for Beyond All Reason. 
 
-This Ai has been worked on for the past 1600+ Hours it is not finished or fully merged.
+This Ai has been worked on for the past 1600+ Hours it is not finished.
 
 Note: THERE WILL BE MANY ISSUES NOT FULLY FIXED! Do not be toxic about the bot! Only Helpful Comments will be welcomed!
 
