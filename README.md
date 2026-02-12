@@ -28,20 +28,22 @@ Armada:
 
 90% Coded
 Fixes Needed:
-//Sea Economy
+//Air Bombing Runs
+//Ismus Lighting Turret on Geo NSea
 
 Cortex:
 
 90% Coded
 Fixes Needed:
-//Sea Economy
+//Air Bombing Runs
+//Ismus Lighting Turret on Geo NSea
 
 
 Legion:
 
 60% Coded
 Fixes Needed:
-//Sea Economy
+//T2 Lab Bug Fix
 
 
 
