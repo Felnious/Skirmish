@@ -11,14 +11,15 @@ What AI do What:
 Barb3
 -
 is an 8v8 Certain Map Config AI created to increase 8v8 Difficulty with Strategies and Roles like a human. It does not support anything lower then 8v8s
+
 -
 Nightmare
 -
 Armada Only AI with no Air on 4v4 to 8v8 Configs (No Scav Units)
 The Rest are old outdated unsourced ais that are fully deprecated to me and i dont care to hear feedback on them.
+
 -
--
-DO NOT SPAM THE AI CHANNEL ON BAR DISCORD
+$${\color{red}DO \space NOT \space SPAM \space AI \space CHANNEL \space ON \space THE \space BAR \space DISCORD}$$
 -
 
 All 3 Factions are being Fixed inside this AI
